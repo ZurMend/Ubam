@@ -1,23 +1,32 @@
 <?php include("conexion.php"); ?>
 
+<html>
+<head>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<h2>Alumnos registrados</h2>
+
 <table border="1">
 <tr>
-<th>ID</th>
-<th>Alumno</th>
-<th>Grupo</th>
+<th>Nombre</th>
+<th>Edad</th>
 </tr>
 
 <?php
-$q=$conn->query("SELECT a.*,g.grupo_codigo 
-FROM alumnos a 
-JOIN grupos g ON a.grupo_id=g.id");
+$res = $conn->query("SELECT * FROM alumnos");
 
-while($r=$q->fetch_assoc()){
-echo "<tr>
-<td>{$r['id']}</td>
-<td>{$r['nombre']}</td>
-<td>{$r['grupo_codigo']}</td>
-</tr>";
+while($row = $res->fetch_assoc()){
+    echo "<tr>
+    <td>{$row['nombre']}</td>
+    <td>{$row['edad']}</td>
+    </tr>";
 }
 ?>
+
 </table>
+
+</body>
+</html>
