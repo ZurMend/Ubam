@@ -1,43 +1,42 @@
 <?php include("conexion.php"); ?>
 
+<?php
+if($_POST){
+    $carrera=$_POST['carrera'];
+    $turno=$_POST['turno'];
+    $grado=$_POST['grado'];
+
+    $codigo=$grado."01";
+
+    $conn->query("INSERT INTO grupos(carrera_id,turno_id,grado,grupo_codigo)
+                  VALUES('$carrera','$turno','$grado','$codigo')");
+}
+
+// cargar datos
+$carreras=$conn->query("SELECT * FROM carreras WHERE activo=1");
+$turnos=$conn->query("SELECT * FROM turnos WHERE activo=1");
+?>
+
+<h2>Registro de Grupos</h2>
+
 <form method="POST">
 
 Carrera:
 <select name="carrera">
-<?php
-$c=$conn->query("SELECT id,nombre FROM carreras");
-while($r=$c->fetch_assoc()){
-echo "<option value='{$r['id']}'>{$r['nombre']}</option>";
-}
-?>
-</select>
+<?php while($c=$carreras->fetch_assoc()){ ?>
+<option value="<?=$c['id']?>"><?=$c['nombre']?></option>
+<?php } ?>
+</select><br>
 
 Turno:
 <select name="turno">
-<option>Matutino</option>
-<option>Vespertino</option>
-<option>Mixto</option>
-</select>
+<?php while($t=$turnos->fetch_assoc()){ ?>
+<option value="<?=$t['id']?>"><?=$t['nombre']?></option>
+<?php } ?>
+</select><br>
 
-Grado:
-<input type="number" name="grado" min="1" max="11">
+Grado (1-11):
+<input type="number" name="grado" min="1" max="11"><br>
 
-<button name="gen">Generar Grupo</button>
-<button name="guardar">Registrar</button>
-
+<button>Registrar</button>
 </form>
-
-<?php
-if(isset($_POST['gen'])){
-$grado=$_POST['grado'];
-echo "Grupo generado: ".$grado."01-V";
-}
-
-if(isset($_POST['guardar'])){
-$grado=$_POST['grado'];
-$codigo=$grado."01-V";
-
-$conn->query("INSERT INTO grupos(carrera_id,turno_id,grado,grupo_codigo)
-VALUES('{$_POST['carrera']}',1,'$grado','$codigo')");
-}
-?>
