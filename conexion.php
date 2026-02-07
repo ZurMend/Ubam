@@ -1,5 +1,10 @@
 <?php
-$conn = new mysqli("localhost","root","","control_escolar");
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "control_escolar";
+
+$conn = new mysqli($host, $user, $pass, $db);
 
 if($conn->connect_error){
     die("Error de conexión");
