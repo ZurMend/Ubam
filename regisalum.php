@@ -1,33 +1,55 @@
 <?php include("conexion.php"); ?>
 
+<?php
+// Registrar alumno
+if($_POST){
+    $nombre = $_POST['nombre'];
+    $ap = $_POST['ap'];
+    $am = $_POST['am'];
+    $grupo = $_POST['grupo'];
+
+    $sql="INSERT INTO alumnos(nombre,ap_paterno,ap_materno,grupo_id)
+          VALUES('$nombre','$ap','$am','$grupo')";
+    $conn->query($sql);
+}
+
+
+$grupos = $conn->query("SELECT id,grupo_codigo FROM grupos WHERE activo=1");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="css/estilos.css">
-<title>Registro Alumno</title>
 </head>
-
 <body>
 
-<h2>Registrar Alumno</h2>
+<h2>Registro de Alumnos</h2>
 
 <form method="POST">
-Nombre: <input type="text" name="nombre" required><br>
-Edad: <input type="number" name="edad" required><br>
-<input type="submit" name="guardar" value="Guardar">
+Nombre:<br>
+<input name="nombre" required><br>
+
+Apellido Paterno:<br>
+<input name="ap" required><br>
+
+Apellido Materno:<br>
+<input name="am" required><br>
+
+Seleccionar Grupo:<br>
+<select name="grupo">
+<?php while($g=$grupos->fetch_assoc()){ ?>
+<option value="<?=$g['id']?>"><?=$g['grupo_codigo']?></option>
+<?php } ?>
+</select><br><br>
+
+<button>Registrar Alumno</button>
 </form>
 
-<?php
-if(isset($_POST['guardar'])){
-    $n = $_POST['nombre'];
-    $e = $_POST['edad'];
-
-    $sql = "INSERT INTO alumnos(nombre,edad) VALUES('$n','$e')";
-    $conn->query($sql);
-
-    echo "Alumno registrado";
-}
-?>
+<br>
+<a href="../regisgroup/regisgroup.php">
+<button>Registrar Grupo</button>
+</a>
 
 </body>
 </html>
