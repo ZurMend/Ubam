@@ -1,12 +1,25 @@
 <?php include("conexion.php"); ?>
 
-<form method="POST">
-<input name="carrera" placeholder="Nueva carrera">
-<button name="add">Registrar</button>
-</form>
+<html>
+<head>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<h2>Catálogo de grupos</h2>
+
+<ul>
 
 <?php
-if(isset($_POST['add'])){
-$conn->query("INSERT INTO carreras(nombre) VALUES('{$_POST['carrera']}')");
+$res = $conn->query("SELECT * FROM grupos");
+
+while($row = $res->fetch_assoc()){
+    echo "<li>".$row['nombre']."</li>";
 }
 ?>
+
+</ul>
+
+</body>
+</html>
