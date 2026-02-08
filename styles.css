@@ -1,0 +1,124 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#1e3c72,#2a5298);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background:white;
+    width:420px;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+    color:#2a5298;
+}
+
+input, select{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus, select:focus{
+    border-color:#2a5298;
+    box-shadow:0 0 5px rgba(42,82,152,0.5);
+}
+
+button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    margin-top:5px;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:#2a5298;
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#1e3c72;
+}
+
+.btn-secondary{
+    background:#6c757d;
+    color:white;
+}
+
+.btn-secondary:hover{
+    background:#545b62;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+th{
+    background:#2a5298;
+    color:white;
+    padding:10px;
+}
+
+td{
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f2f2f2;
+}
+
+.btn-ok{
+    background:#28a745;
+    color:white;
+    padding:5px 8px;
+    border-radius:5px;
+    text-decoration:none;
+}
+
+.btn-reset{
+    background:#ffc107;
+    color:black;
+    padding:5px 8px;
+    border-radius:5px;
+    text-decoration:none;
+}
+
+.btn-delete{
+    background:#dc3545;
+    color:white;
+    padding:5px 8px;
+    border-radius:5px;
+    text-decoration:none;
+}
+
+.btn-ok:hover{opacity:0.8;}
+.btn-reset:hover{opacity:0.8;}
+.btn-delete:hover{opacity:0.8;}
